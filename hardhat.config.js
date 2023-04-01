@@ -1,3 +1,4 @@
+require('dotenv').config();
 require("@nomiclabs/hardhat-waffle");
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -6,7 +7,7 @@ module.exports = {
   paths: {
     artifacts: './src/artifacts'
   },
-  defaultNetwork: process.env.NEXT_PUBLIC_DEFAULT_NETWORK,
+  defaultNetwork: process.env.DEFAULT_NETWORK,
   networks: {
     hardhat: {
       chainId: 1337
