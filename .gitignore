@@ -1,1 +1,11 @@
 .DS_Store
+
+# dependencies
+node_modules
+
+# env file
+.env
+
+#Hardhat files
+cache
+artifacts

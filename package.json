@@ -1,0 +1,32 @@
+{
+  "name": "zk-fruits-noir-project",
+  "version": "1.0.0",
+  "description": "Fruity Friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madztheo/zk-fruits-noir-project.git"
+  },
+  "keywords": [
+    "zk",
+    "noir",
+    "fruity",
+    "friends",
+    "scroll"
+  ],
+  "author": "madztheo & guelowrd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madztheo/zk-fruits-noir-project/issues"
+  },
+  "homepage": "https://github.com/madztheo/zk-fruits-noir-project#readme",
+  "devDependencies": {
+    "@nomiclabs/hardhat-waffle": "^2.0.5",
+    "ethereum-waffle": "^4.0.10",
+    "ethers": "^5.4.0",
+    "hardhat": "^2.13.0"
+  }
+}
