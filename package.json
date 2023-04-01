@@ -25,11 +25,13 @@
   "homepage": "https://github.com/madztheo/zk-fruits-noir-project#readme",
   "devDependencies": {
     "@nomiclabs/hardhat-waffle": "^2.0.5",
+    "chai": "^4.3.7",
     "ethereum-waffle": "^4.0.10",
     "ethers": "^5.4.0",
     "hardhat": "^2.13.0"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "^4.8.2",
     "dotenv": "^16.0.3"
   }
 }
