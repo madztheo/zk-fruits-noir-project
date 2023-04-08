@@ -1,4 +1,11 @@
+use dep::std;
+
 global MAX_ARRAY_SIZE: Field = 20;
+
+fn checkCommitment(commitment: Field, set: [Field; MAX_ARRAY_SIZE]) {
+    let computedCommitment = std::hash::pedersen(set);
+    constrain commitment == computedCommitment[0];
+}
 
 fn getIntersectionCardinality(setA : [Field; MAX_ARRAY_SIZE], setB : [Field; MAX_ARRAY_SIZE]) -> Field {
     let mut cardinality: Field = 0;
@@ -12,7 +19,14 @@ fn getIntersectionCardinality(setA : [Field; MAX_ARRAY_SIZE], setB : [Field; MAX
     cardinality
 }
 
-fn main(setA : [Field; MAX_ARRAY_SIZE], setB : [Field; MAX_ARRAY_SIZE]) {
+fn main(
+    commitmentA: pub Field, 
+    commitmentB: pub Field, 
+    setA : [Field; MAX_ARRAY_SIZE], 
+    setB : [Field; MAX_ARRAY_SIZE]
+) {
+    checkCommitment(commitmentA, setA);
+    checkCommitment(commitmentB, setB);
     let cardinality = getIntersectionCardinality(setA, setB);
     constrain cardinality != 0;
 }
