@@ -1,27 +1,34 @@
-
 // SPDX-License-Identifier: GPL-2.0-only
 
 pragma solidity >=0.6.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-interface ITurboVerifier {
-    function verify(bytes calldata) external view returns (bool result);
+interface Verifier {
+    function verify(
+        bytes calldata _proof,
+        bytes32[] calldata _publicInputs
+    ) external view returns (bool);
 }
 
 contract ProofRegister is Ownable {
     event ProofRegistered(bytes32 indexed _matchee1, bytes32 indexed _matchee2);
     event WhitelistUpdated(address indexed _addy, bool indexed _approved);
-    
-    ITurboVerifier verifier;
-    mapping(address => bool) whitelist;
-    
-    constructor (address _addy) {
-        verifier = ITurboVerifier(_addy);
-    }  
 
-    function verifyAndRegister(bytes calldata _proof, bytes32 _matchee1, bytes32 _matchee2) public {
-        if (verifier.verify(_proof)) {
+    Verifier verifier;
+    mapping(address => bool) whitelist;
+
+    constructor(address _addy) {
+        verifier = Verifier(_addy);
+    }
+
+    function verifyAndRegister(
+        bytes calldata _proof,
+        bytes32[] calldata _publicInputs,
+        bytes32 _matchee1,
+        bytes32 _matchee2
+    ) public {
+        if (verifier.verify(_proof, _publicInputs)) {
             emit ProofRegistered(_matchee1, _matchee2);
         }
     }
