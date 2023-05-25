@@ -1,8 +1,9 @@
-require("dotenv").config();
-require("@nomiclabs/hardhat-waffle");
+import { HardhatUserConfig } from "hardhat/config";
+import "@nomicfoundation/hardhat-toolbox";
+import dotenv from "dotenv";
+dotenv.config();
 
-/** @type import('hardhat/config').HardhatUserConfig */
-module.exports = {
+const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.18",
     settings: {
@@ -21,9 +22,11 @@ module.exports = {
       chainId: 1337,
     },
     scrollAlpha: {
-      url: "https://alpha-rpc.scroll.io/l2" || "",
+      url: "https://alpha-rpc.scroll.io/l2",
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
   },
 };
+
+export default config;

@@ -1,32 +1,29 @@
-const { ethers } = require("hardhat");
-const { assert, expect } = require("chai");
+import { ethers } from "hardhat";
+import { expect, assert } from "chai";
+import { ProofRegister, UltraVerifier } from "../typechain-types";
 
 describe("TurboVerifier & ProofRegister contracts", function () {
-  let verifierContract;
-  let registerContract;
+  let verifierContract: UltraVerifier;
+  let registerContract: ProofRegister;
   beforeEach(async () => {
     const verifierDeployer = await ethers.getContractFactory("UltraVerifier");
-    const verifierDeployed = await verifierDeployer.deploy();
-    verifierContract = await verifierDeployed.deployed();
+    verifierContract = await verifierDeployer.deploy();
+    await verifierContract.deployed();
     const verifierAddy = verifierContract.address;
     const registerDeployer = await ethers.getContractFactory("ProofRegister");
-    const registerDeployed = await registerDeployer.deploy(verifierAddy);
-    registerContract = await registerDeployed.deployed();
+    registerContract = await registerDeployer.deploy(verifierAddy);
+    await registerContract.deployed();
   });
   describe("deployments", async function () {
     it("TurboVerifier deploys successfully", async function () {
       const verifierAddy = verifierContract.address;
-      assert.notEqual(verifierAddy, 0x0);
-      assert.notEqual(verifierAddy, "");
-      assert.notEqual(verifierAddy, null);
-      assert.notEqual(verifierAddy, undefined);
+      assert.notEqual(verifierAddy, ethers.constants.AddressZero);
+      assert.isDefined(verifierAddy);
     });
     it("ProofRegister deploys successfully", async function () {
       const registerAddy = registerContract.address;
-      assert.notEqual(registerAddy, 0x0);
-      assert.notEqual(registerAddy, "");
-      assert.notEqual(registerAddy, null);
-      assert.notEqual(registerAddy, undefined);
+      assert.notEqual(registerAddy, ethers.constants.AddressZero);
+      assert.isDefined(registerAddy);
     });
   });
   // TODO: rerun once latest Noir version is available, as it should fix the problem
