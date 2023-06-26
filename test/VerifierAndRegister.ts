@@ -35,8 +35,8 @@ describe("TurboVerifier & ProofRegister contracts", function () {
       // console.log(proofBytes.map(b => "0x" + b.toString(16)).join(','))
       // console.log(proofBytes)
       let proofIsValid = await verifierContract.verify(proofBytes, [
-        "0x1cc39cc5398172f4f7cdd483e2aba5bc1fc1c28826d0ea5ca6183301fc3439c6",
-        "0x0fdf13cc2206bf0fcc38f3fbc1d4cfa3bb54890840d52a03c9511ec6a1ff06ce",
+        "0x26ed5e1af87ec150f8f69345f4b4db8ae49fea36516f72403ed590fa1bfe3570",
+        "0x0f3fc7cbde26e9f4972e074591a3aa2e3e125e71285aad8174bd73aeb0876d5f",
       ]);
       assert(proofIsValid);
     });
