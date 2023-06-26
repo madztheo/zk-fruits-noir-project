@@ -4,7 +4,7 @@ global MAX_ARRAY_SIZE: Field = 20;
 
 fn checkCommitment(commitment: Field, set: [Field; MAX_ARRAY_SIZE]) {
     let computedCommitment = std::hash::pedersen(set);
-    constrain commitment == computedCommitment[0];
+    assert(commitment == computedCommitment[0]);
 }
 
 fn getIntersectionCardinality(setA : [Field; MAX_ARRAY_SIZE], setB : [Field; MAX_ARRAY_SIZE]) -> Field {
@@ -39,5 +39,5 @@ fn main(
     // Retrieve the cardinality of the intersection, if there is any
     let cardinality = getIntersectionCardinality(setA, setB);
     // Make sure the proof will only succeed if the intersection is non-empty
-    constrain cardinality != 0;
+    assert(cardinality != 0);
 }
